@@ -1,1 +1,0 @@
-pysap@git+https://github.com/usdAG/pysap_sncscan.git@main-sncscan
