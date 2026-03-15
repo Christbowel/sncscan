@@ -1,0 +1,53 @@
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name        = "sncscan"
+version     = "2.0.0"
+description = "Tool for analyzing SAP Secure Network Communications (SNC)."
+readme      = "README.md"
+license     = { text = "GPL-3.0-or-later" }
+authors     = [
+    { name = "Jonas Wamsler",    email = "jonas.wamsler@usd.de" },
+    { name = "Nicolas Schickert" },
+    {name = "Christ Bowel Bouchuen"},
+]
+requires-python = ">=3.11"
+
+# pysap is pulled from the usdAG fork; pip resolves it via the URL below.
+dependencies = [
+    "pysap>0.1",
+    "scapy",
+]
+
+[project.urls]
+Homepage   = "https://github.com/usdAG/sncscan"
+Repository = "https://github.com/usdAG/sncscan"
+
+
+[project.scripts]
+sncscan = "sncscan.main:main"
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-cov",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["sncscan"]
+
+
+[tool.pytest.ini_options]
+testpaths    = ["tests"]
+addopts      = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["sncscan"]
+omit   = ["sncscan/main.py"]   # entry point — tested via integration tests
+
+[tool.coverage.report]
+show_missing = true
