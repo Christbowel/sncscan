@@ -17,9 +17,8 @@ import json
 import sys
 from typing import TextIO
 
-from pysap.SAPSNC import snc_qop  # noqa: only pysap import in this module
 
-from sncscan.constants import QOP_FLAG_MAX
+from sncscan.constants import QOP_FLAG_MAX, SNC_QOP_LABELS
 from sncscan.models import OutputFormat, Protocol, SNCScanResult
 
 
@@ -84,7 +83,7 @@ class ResultFormatter:
 
     def _qop_line(self, param: str, value: int) -> str:
         c = self.colors.GREEN if value == 3 else self.colors.RED
-        return f"\tsnc/data_protection/{param}\t{c}{value} ({snc_qop.get(value)}){self.colors.END}"
+        return f"\tsnc/data_protection/{param}\t{c}{value} ({SNC_QOP_LABELS.get(value)}){self.colors.END}"
 
     def _format_pretty(self, result: SNCScanResult) -> str:
         c = self.colors

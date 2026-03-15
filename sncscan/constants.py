@@ -55,3 +55,10 @@ ROUTER_HEADER_LENGTH: int = 73
 DIAG_HEADER_LENGTH: int = 64
 
 SNC_PROTOCOL_VERSION: int = 6
+# QoP level labels — mirrors pysap.SAPSNC.snc_qop
+SNC_QOP_LABELS: dict[int, str] = {
+    0: "None",
+    1: "Auth",
+    2: "Integrity",
+    3: "Privacy",
+}
